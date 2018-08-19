@@ -5,7 +5,7 @@
  Source Server Type    : MySQL
  Source Server Version : 50717
  Source Host           : localhost
- Source Database       : cAuth
+ Source Database       : cPet
 
  Target Server Type    : MySQL
  Target Server Version : 50717
@@ -33,5 +33,38 @@ CREATE TABLE `cSessionInfo` (
   KEY `openid` (`open_id`) USING BTREE,
   KEY `skey` (`skey`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='会话管理用户信息';
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+DROP TABLE IF EXISTS `cPersonInfo`;
+CREATE Table `cPersonInfo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT, 
+  `open_id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nickname` varchar(100),
+  `name` varchar(100),
+  `area` varchar(100),
+  `hobby` varchar(100),
+  PRIMARY KEY (`id`),
+  KEY `personinfoid` (`id`) USING BTREE,
+  KEY `area` (`area`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='用户个人信息';
+
+ALTER TABLE `cPersonInfo` ADD CONSTRAINT `fk_per` FOREIGN KEY (`open_id`) REFERENCES `cSessionInfo` (`open_id`);
+
+SET FOREIGN_KEY_CHECKS = 1; 
+
+DROP TABLE IF EXISTS `cPetInfo`;
+CREATE TABLE `cPetInfo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT, 
+  `masterid` int(11) NOT NULL,
+  `name` varchar(100),
+  `type` varchar(100),
+  `age` int(11),
+  PRIMARY KEY(`id`),
+  KEY `petinfoid` (`id`) USING BTREE,
+  KEY `type` (`type`) USIng BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='宠物信息';
+
+ALTER TABLE `cPetInfo` ADD CONSTRAINT `fk_pet` FOREIGN KEY (`masterid`) REFERENCES `cPersonInfo` (`id`);
 
 SET FOREIGN_KEY_CHECKS = 1;

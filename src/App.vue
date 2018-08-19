@@ -12,6 +12,10 @@ export default {
 </script>
 
 <style>
+@font-face {
+  font-family: Tensentype-DouDouJ;
+  src: url('http://zhuxinghan.oss-cn-beijing.aliyuncs.com/weixin/others/font/Tensentype-DouDouJ.ttf');
+}
 .container {
   height: 100%;
   display: flex;
@@ -27,5 +31,43 @@ export default {
   -moz-transition: width 2s;
   -webkit-transition: width 2s;
   -o-transition: width 2s;
+}
+
+.text-primary{
+  font-size: 14px;
+  color:black;
+}
+.text-cute{
+    font-family: Tensentype-DouDouJ, Times, serif;
+}
+.btn{
+  color:white;
+  background-color: #EA5A49;
+  margin-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 2px;
+  font-size: 16px;
+  line-height: 40px;
+  height: 40px;
+  width:100%;
+}
+.btn:active{
+  color:#EA5A49;
+  background-color: white;
+}
+.text-footer{
+  text-align: center;
+  font-size:12px;
+  margin-bottom: 5px;
+}
+.right{
+  float: right;
+}
+.page-title{
+  padding-left: 20px;
+  background-color: #eee;
+  font-size: 14px;
+  line-height: 40px;
 }
 </style>
