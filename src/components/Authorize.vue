@@ -109,6 +109,7 @@ export default {
         .authority-alert{
             font-weight: bold;
             margin-bottom: 10rpx;
+            width: 300rpx;
         }
         .authority-item::before{
                 width:5rpx;

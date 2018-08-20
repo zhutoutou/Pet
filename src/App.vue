@@ -16,7 +16,7 @@ export default {
   font-family: Tensentype-DouDouJ;
   src: url('http://zhuxinghan.oss-cn-beijing.aliyuncs.com/weixin/others/font/Tensentype-DouDouJ.ttf');
 }
-.container {
+/* .container {
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -24,7 +24,7 @@ export default {
   justify-content: space-between;
   padding: 200rpx 0;
   box-sizing: border-box;
-}
+} */
 /* this rule will be remove */
 * {
   transition: width 2s;

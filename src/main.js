@@ -16,7 +16,7 @@ export default {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
       navigationBarTitleText: '微狗',
-      navigationBarTextStyle: 'white'
+      navigationBarTextStyle: 'black'
     },
     tabBar: {
       list: [
