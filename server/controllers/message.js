@@ -19,7 +19,7 @@ async function post (ctx, next) {
      * 可查看微信文档：https://mp.weixin.qq.com/debug/wxadoc/dev/api/custommsg/receive.html#接收消息和事件
      */
     const body = ctx.request.body
-
+    console.log(body)
     ctx.body = 'success'
 }
 

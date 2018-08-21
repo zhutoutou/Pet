@@ -68,3 +68,30 @@ CREATE TABLE `cPetInfo` (
 ALTER TABLE `cPetInfo` ADD CONSTRAINT `fk_pet` FOREIGN KEY (`masterid`) REFERENCES `cPersonInfo` (`id`);
 
 SET FOREIGN_KEY_CHECKS = 1;
+
+DROP TABLE IF EXISTS `cSysCodeType`;
+CREATE TABLE `cSysCodeType` (
+  `id` int(11) NOT NULL AUTO_INCREMENT, 
+  `codeid` int(11) NOT NULL unique,
+  `name` varchar(100),
+  `note` varchar(100),
+  PRIMARY KEY(`id`),
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='编码类型表';
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+DROP TABLE IF EXISTS `cSysCode`;
+CREATE TABLE `cSysCode` (
+  `id` int(11) NOT NULL AUTO_INCREMENT, 
+  `codeid` int(11) NOT NULL,
+  `typeid` int(11) NOT NULL,
+  `sort` int(11),
+  `name` varchar(100),
+  `note` varchar(100),
+  PRIMARY KEY(`id`),
+  KEY `typeid` (`typeid`) USIng BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='编码表';
+
+ALTER TABLE `cSysCode` ADD CONSTRAINT `fk_typeid` FOREIGN KEY (`typeid`) REFERENCES `cSysCodeType` (`codeid`);
+
+SET FOREIGN_KEY_CHECKS = 1;

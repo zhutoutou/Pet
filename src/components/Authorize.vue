@@ -21,7 +21,7 @@
 </template>
 <script>
 import utils, {showSuccess, showModal} from '@/utils'
-import config from '@/config.js'
+import config from '@/config'
 export default {
   props: {
     image: String,
@@ -109,6 +109,7 @@ export default {
         .authority-alert{
             font-weight: bold;
             margin-bottom: 10rpx;
+            width: 300rpx;
         }
         .authority-item::before{
                 width:5rpx;

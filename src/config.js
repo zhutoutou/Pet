@@ -9,10 +9,13 @@ const config = {
     title: '微狗小程序',
     image: 'http://zhuxinghan.oss-cn-beijing.aliyuncs.com/weixin/images/avatar/2.png',
     authorities: [
-      '·获取经纬度地址',
-      '·可能获取你的朋友信息',
-      '·获取你的手机信息'
+      '获取经纬度地址',
+      '可能获取你的朋友信息',
+      '获取你的手机信息'
     ]
+  },
+  resCollection: {
+    defaultAvatar: '/static/img/unlogin.png'
   }
 }
 
