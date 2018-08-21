@@ -21,7 +21,7 @@
 </template>
 <script>
 import utils, {showSuccess, showModal} from '@/utils'
-import config from '@/config.js'
+import config from '@/config'
 export default {
   props: {
     image: String,

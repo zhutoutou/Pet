@@ -9,7 +9,7 @@ module.exports = async (ctx, next) => {
             // eslint-disable-next-line
             const open_id = userinfo.openId
             let score = 0
-            let level = 0
+            let level = 1
             const res = await mysql('cPersonInfo')
                         .select()
                         .where('open_id', open_id)

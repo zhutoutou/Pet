@@ -1,4 +1,5 @@
 <script>
+import {get} from '@/utils'
 export default {
   created () {
     // 调用API从本地缓存中获取数据
@@ -7,6 +8,27 @@ export default {
     wx.setStorageSync('logs', logs)
 
     console.log('app created and cache logs by setStorageSync')
+
+    this.initData()
+  },
+  methods: {
+    async initData () {
+      try {
+        const res = await get('/weapp/init')
+        console.log(res)
+        if (res.list.length) {
+          wx.setStorage({
+            key: 'codelist',
+            value: res.list
+          })
+          console.log('app initData and connect service Success')
+        } else {
+          throw new Error('初始化数据异常,无数据')
+        }
+      } catch (err) {
+        console.log('app iniData Failed + ' + err)
+      }
+    }
   }
 }
 </script>

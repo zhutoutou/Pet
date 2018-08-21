@@ -24,7 +24,12 @@ async function get (ctx) {
             })
         }
     } catch (err) {
-
+        ctx.state = {
+            code: -1,
+            data: {
+                msg: err.sqlMessage || '获取初始化数据失败'
+            }
+        }
     } finally {
 
     }

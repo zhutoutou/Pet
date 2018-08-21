@@ -5,9 +5,9 @@
         </div>
         <div class="info">
             <div class="name">{{info.nickName}}</div>
-            <div class="level text-cute">{{levelComment}}</div>
+            <div class="level text-cute">{{personinfo.level}}</div>
             <div class="score-container">
-                <div class="score">积分 {{info.personinfo.score}}分</div>
+                <div class="score">积分 {{personinfo.score}}分</div>
                 <a href="">查看详情</a>
             </div>
         </div>
@@ -15,12 +15,7 @@
 </template>
 <script>
 export default {
-  props: ['info'],
-  computed: {
-    levelComment () {
-      return '初级铲屎官'
-    }
-  }
+  props: ['info', 'personinfo']
 }
 </script>
 <style lang="scss" scoped>
