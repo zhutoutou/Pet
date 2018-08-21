@@ -1,6 +1,7 @@
 <script>
 export default {
   created () {
+    console.log('小程序进入')
     // 调用API从本地缓存中获取数据
     const logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())

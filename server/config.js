@@ -19,7 +19,7 @@ const CONF = {
     mysql: {
         host: 'localhost',
         port: 3306,
-        user: 'weapp',
+        user: 'root',
         db: 'cPet',
         pass: 'weapp',
         char: 'utf8mb4'
