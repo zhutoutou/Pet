@@ -69,3 +69,4 @@ typings/
 # next.js build output
 .next
 >>>>>>> 6703f2b6697b1e0367d6c72b606bce39dae8276b
+server/config.js
