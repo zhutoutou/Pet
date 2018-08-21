@@ -35,6 +35,8 @@ router.post('/message', controllers.message.post)
 // --- 业务逻辑实现 Demo --- //
 // GET 测试用接口
 router.get('/demo', controllers.demo)
+// GET 获取数据版本
+router.get('/version', controllers.version.get)
 // GET 初始化数据接口
 router.get('/init', controllers.init)
 // GET 获取个人信息

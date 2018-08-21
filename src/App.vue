@@ -13,15 +13,22 @@ export default {
     this.initData()
   },
   methods: {
+    async checkVersion () {
+      // 检测数据版本
+      try {
+        const res = await get('/weapp/version')
+        return res.out
+      } catch (err) {
+        console.log('app iniData Failed + ' + err)
+        return false
+      }
+    },
     async initData () {
       try {
         const res = await get('/weapp/init')
         console.log(res)
         if (res.list.length) {
-          wx.setStorage({
-            key: 'codelist',
-            value: res.list
-          })
+          wx.setStorageSync('codelist', res.list)
           console.log('app initData and connect service Success')
         } else {
           throw new Error('初始化数据异常,无数据')

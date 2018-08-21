@@ -95,3 +95,12 @@ CREATE TABLE `cSysCode` (
 ALTER TABLE `cSysCode` ADD CONSTRAINT `fk_typeid` FOREIGN KEY (`typeid`) REFERENCES `cSysCodeType` (`codeid`);
 
 SET FOREIGN_KEY_CHECKS = 1;
+
+DROP TABLE IF EXISTS `cSysConfig`;
+CREATE TABLE `cSysConfig` (
+  `id` int(11) NOT NULL AUTO_INCREMENT, 
+  `name`  varchar(100) NOT NULL,
+  `version` int(11) NOT NULL DEFAULT 0,
+  `note` varchar(100),
+  PRIMARY KEY(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='配置表';
