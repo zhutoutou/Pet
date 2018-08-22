@@ -38,7 +38,7 @@ router.get('/demo', controllers.demo)
 // GET 获取数据版本
 router.get('/version', controllers.version.get)
 // GET 初始化数据接口
-router.get('/init', controllers.init)
+router.get('/sysCode', controllers.sysCode)
 // GET 获取个人信息
 router.get('/userInfo', controllers.userInfo.get)
 

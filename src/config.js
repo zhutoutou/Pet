@@ -1,6 +1,9 @@
 // 配置项
 const host = 'http://localhost:5757'
 
+const codeType = {
+  LEVEL: 1
+}
 const config = {
   host,
   loginUrl: `${host}/weapp/login`,
@@ -16,7 +19,8 @@ const config = {
   },
   resCollection: {
     defaultAvatar: '/static/img/unlogin.png'
-  }
+  },
+  codeType
 }
 
 export default config

@@ -53,13 +53,15 @@ export default {
         }
         console.log('登陆成功')
         let res = await utils.qcloud.requestSync(config.userUrl)
-        console.log('获取用户信息成功')
+        console.log('获取用户信息成功', res)
         wx.hideLoading()
         showSuccess('登陆成功')
 
-        wx.setStorageSync('userinfo', { userinfo: res.data.data, logged: true })
-        this.logged = true
-        this.userinfo = res.data.data
+        wx.setStorageSync('userinfo', {
+          data: res.data.data.data,
+          version: res.data.data.version
+        })
+        wx.setStorageSync('logged', true)
       } catch (err) {
         console.log(err)
         wx.hideLoading()

@@ -1,11 +1,11 @@
 const {mysql} = require('../qcloud')
 module.exports = async ctx => {
     try {
-        let codelist = []
-        const types = await mysql('cSysCodetype')
+        let syscode = []
+        const syscodetypequery = await mysql('cSysCodetype')
                                 .select()
-        if (types.length > 0) {
-            codelist = await Promise.all(types.map(async v => {
+        if (syscodetypequery.length > 0) {
+            syscode = await Promise.all(syscodetypequery.map(async v => {
                 const typeid = v.codeid
                 const codes = await mysql('cSysCode')
                                         .select()
@@ -16,10 +16,15 @@ module.exports = async ctx => {
                 }
             }))
         }
-        console.log(codelist)
+        const versionquert = await mysql('cSysConfig')
+                                    .select('version')
+                                    .where('name', 'codelist')
+                                    .first()
         ctx.state.data = {
-            list: codelist
+            data: syscode,
+            version: versionquert.version
         }
+        console.log(ctx.state)
     } catch (err) {
         console.log(err)
         ctx.state = {

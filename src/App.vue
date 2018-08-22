@@ -2,43 +2,77 @@
 import {get} from '@/utils'
 export default {
   created () {
-    console.log('小程序进入')
     // 调用API从本地缓存中获取数据
     const logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
 
     console.log('app created and cache logs by setStorageSync')
-    if (this.checkVersion) { this.initData() }
+    // 初始化数据
+    this.init()
   },
   methods: {
-    async checkVersion () {
-      // 检测数据版本
-      try {
-        const {version} = wx.getStorageSync('')
-        const res = await get('/weapp/version', {
-          name: '基础数据',
-          version: version
-        })
-        return res.out
-      } catch (err) {
-        console.log('app iniData Failed + ' + err)
-        return true
+    /**
+     * 初始APP
+     */
+    async init () {
+      let storage = wx.getStorageSync('syscode')
+      if (!storage || !this.checkVersion('syscode', storage.version)) {
+        this.updateBasicData()
+      }
+      const logged = wx.getStorageSync('logged')
+      storage = wx.getStorageSync('userinfo')
+      if (logged && this.checkVersion('userinfo', storage.version)) {
+        this.updateUserData(storage.data.openId)
       }
     },
-    async initData () {
+    async updateBasicData () {
       try {
-        const res = await get('/weapp/init')
-        console.log(res)
-        if (res.list.length) {
-          wx.setStorageSync('codelist', res.list)
-          console.log('app initData and connect service Success')
+        const res = await get('/weapp/sysCode')
+        console.log('updateBasicData', res)
+        if (res.data) {
+          wx.setStorageSync('syscode', res)
+          console.log('获取了最新的编码数据')
         } else {
           throw new Error('初始化数据异常,无数据')
         }
       } catch (err) {
         console.log('app iniData Failed + ' + err)
       }
+    },
+    async updateUserData (openId) {
+      try {
+        const res = await get('/weapp/userInfo', {'open_id': openId})
+        console.log('updateUserData', res)
+        if (res) {
+          console.log('res', res)
+          wx.setStorageSync('userinfo', res)
+          console.log('获取了最新的用户信息')
+        } else {
+          throw new Error('初始化数据异常,无数据')
+        }
+      } catch (err) {
+        console.log('app iniData Failed + ' + err)
+      }
+    }
+  },
+  /**
+   * 检测版本方法
+   * @param {检测的名称} name
+   * @param {当前版本编码} version
+   */
+  async checkVersion (name, version) {
+    // 检测数据版本
+    try {
+      console.log('checkversion')
+      const res = await get('/weapp/version', {
+        name: name,
+        version: version
+      })
+      return res.out
+    } catch (err) {
+      console.log('app request version Failed + ' + err)
+      return true
     }
   }
 }
