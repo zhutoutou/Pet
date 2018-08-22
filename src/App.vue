@@ -9,18 +9,21 @@ export default {
     wx.setStorageSync('logs', logs)
 
     console.log('app created and cache logs by setStorageSync')
-
-    this.initData()
+    if (this.checkVersion) { this.initData() }
   },
   methods: {
     async checkVersion () {
       // 检测数据版本
       try {
-        const res = await get('/weapp/version')
+        const {version} = wx.getStorageSync('')
+        const res = await get('/weapp/version', {
+          name: '基础数据',
+          version: version
+        })
         return res.out
       } catch (err) {
         console.log('app iniData Failed + ' + err)
-        return false
+        return true
       }
     },
     async initData () {
