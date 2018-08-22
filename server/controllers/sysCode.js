@@ -18,7 +18,7 @@ module.exports = async ctx => {
         }
         const versionquert = await mysql('cSysConfig')
                                     .select('version')
-                                    .where('name', 'codelist')
+                                    .where('name', 'syscode')
                                     .first()
         ctx.state.data = {
             data: syscode,

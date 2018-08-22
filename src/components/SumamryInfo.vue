@@ -1,15 +1,15 @@
 <template>
     <div class="container">
         <div>
-            <img :src="info.avatarUrl" alt="" class="avatar">
+            <img :src="info.avatarUrl" alt="" class="avatar" @click="changeAvatar">
         </div>
         <div class="info">
             <div class="name">{{info.nickName}}</div>
             <div class="bottom-container">    
                 <div class="level text-cute">{{level}}</div>
                 <div class="score-container">
-                    <div class="score">积分 {{personinfo.score}}分</div>
-                    <a class="right" href="">查看详情</a>
+                    <div class="score">积分 {{score}}分</div>
+                    <a class="right" v-if="self" href="">查看详情</a>
                 </div>
             </div>
         </div>
@@ -18,7 +18,10 @@
 <script>
 import config from '@/config'
 export default {
-  props: ['info', 'personinfo'],
+  props: {
+    info: Object,
+    self: Boolean
+  },
   data () {
     return {
       syscode: []
@@ -26,11 +29,28 @@ export default {
   },
   computed: {
     level () {
-      return (this.syscode.find(v => v.type === config.codeType.LEVEL) && this.syscode.find(v => v.type === config.codeType.LEVEL).list.find(v => v.codeid === this.personinfo.level).name) || ''
+      if (!this.info.personinfo) return ''
+      return (this.syscode.find(v => v.type === config.codeType.LEVEL) && this.syscode.find(v => v.type === config.codeType.LEVEL).list.find(v => v.codeid === this.info.personinfo.level).name) || ''
+    },
+    score () {
+      if (!this.info.personinfo) return ''
+      return this.info.personinfo.score
     }
   },
   mounted () {
     this.syscode = wx.getStorageSync('syscode').data
+  },
+  methods: {
+    changeAvatar () {
+      wx.chooseImage({
+        count: '1', // 最多可以选择的图片张数,
+        success: res => {
+          console.log(res)
+        }, // 返回图片的本地文件路径列表 tempFilePaths,
+        fail: () => {},
+        complete: () => {}
+      })
+    }
   }
 }
 </script>

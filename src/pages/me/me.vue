@@ -1,6 +1,6 @@
 <template>
     <div>
-      <SumamryInfo :info="userinfo" :personinfo="userinfo.personinfo || {}"></SumamryInfo>
+      <SumamryInfo :info="userinfo" :self="true"></SumamryInfo>
       <div class="detail"></div>
     </div>
 </template>
