@@ -93,8 +93,8 @@ export default {
             display: flex;
             flex-direction: column;
             img{
-                width: 100rpx;
-                height: 100rpx;
+                width: 150rpx;
+                height: 150rpx;
                 border-radius: 10rpx;
             }
             span{
@@ -111,7 +111,6 @@ export default {
         .authority-alert{
             font-weight: bold;
             margin-bottom: 10rpx;
-            width: 300rpx;
         }
         .authority-item::before{
                 width:5rpx;

@@ -46,6 +46,14 @@ export default {
         count: '1', // 最多可以选择的图片张数,
         success: res => {
           console.log(res)
+          wx.uploadFile({
+            url: config.uploadUrl, // 开发者服务器 url
+            filePath: res.tempFilePaths[0], // 要上传文件资源的路径
+            name: `${this.info.openId}${((new Date()).getTime())}avatar.png`, // 文件对应的 key , 开发者在服务器端通过这个 key 可以获取到文件二进制内容
+            success: res => {},
+            fail: () => {},
+            complete: () => {}
+          })
         }, // 返回图片的本地文件路径列表 tempFilePaths,
         fail: () => {},
         complete: () => {}
